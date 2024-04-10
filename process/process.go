@@ -97,9 +97,9 @@ func SaveStopsGeojson(fileName string, stops_features []StopFeature) {
 	fmt.Println("successfully written to file")
 }
 
-func Digest() {
+func Digest(url string) []StopFeature {
 	fmt.Println("another one")
-	downloadFile("https://www.metrostlouis.org/Transit/google_transit.zip", "gtfs.zip")
+	downloadFile(url, "gtfs.zip")
 
 	feed := gtfsparser.NewFeed()
 	feed.Parse("gtfs.zip")
@@ -137,5 +137,5 @@ func Digest() {
 		stops_features = append(stops_features, feature)
 	}
 
-	SaveStopsGeojson("stlouis", stops_features)
+	return stops_features
 }
